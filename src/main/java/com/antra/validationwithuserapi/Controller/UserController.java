@@ -26,8 +26,8 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/user")
-    public ResponseEntity<?> validateUser(@RequestBody Info info) {
-        if (service.isValid(info)) {
+    public ResponseEntity<?> getValidateUserEmail(@RequestBody Info info) {
+        if (service.isValidUser(info)) {
             List<User> users = service.saveAllUser(info);
             return new ResponseEntity<>(service.getEmail("Emma"), HttpStatus.OK);
         } else {

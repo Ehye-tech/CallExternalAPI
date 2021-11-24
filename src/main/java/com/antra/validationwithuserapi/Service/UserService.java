@@ -18,17 +18,20 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean isValid(Info info){
-        if(info.getUserName().equals("Emma") && info.getPassword().equals("1234")){
-            return true;
+    public boolean isValidUser(Info info){
+        if (!info.getUserName().equals("Emma")) {
+            return false;
         }
-        return false;
+        if (!info.getPassword().equals("1234")) {
+            return false;
+        }
+        return true;
     }
 
     public List<User> saveAllUser(Info info){
         RestTemplate restTemplate = new RestTemplate();
-//        User[] users = restTemplate.getForObject(GET_USER_API+"/?userName="+info.getUserName(),User[].class);
-        User[] users = restTemplate.getForObject(GET_USER_API,User[].class);
+        User[] users = restTemplate.getForObject(GET_USER_API+"/?userName="+info.getUserName(),User[].class);
+//        User[] users = restTemplate.getForObject(GET_USER_API,User[].class);
         List<User> usersList = Arrays.asList(users);
         return userRepository.saveAll(usersList);
     }
@@ -37,4 +40,5 @@ public class UserService {
         User user = userRepository.findByFirstName(firstName);
         return user.getEmail();
     }
+
 }
