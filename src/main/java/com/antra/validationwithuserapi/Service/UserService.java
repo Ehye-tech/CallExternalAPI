@@ -38,10 +38,6 @@ public class UserService {
         return email;
     }
 
-    //        User[] users = restTemplate.getForObject(GET_USER_API,User[].class);
-//        List<User> usersList = Arrays.asList(users);
-//        return userRepository.saveAll(usersList);
-//
     public String getEmailFromUser(List<User> users, String firstName){
         for(User user : users){
             if(user.getFirstName().equals(firstName)){
