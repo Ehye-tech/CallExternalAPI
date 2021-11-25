@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Data
-public class UserWrapper implements Serializable {
+public class UserWrapper {
     private int page;
     private int per_page;
     private int total;

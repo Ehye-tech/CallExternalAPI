@@ -24,11 +24,13 @@ public class UserController {
 
     @Autowired
     UserRepository userRepository;
-
+//accept a post call with Json on request and the request should contain a field user name and password.
     @PostMapping("/user")
     public ResponseEntity<?> getValidateUserEmail(@RequestBody Info info) {
+        //If valid credentials are passed
         if (service.isValidUser(info)) {
             String userEmail = service.callEmailFromValidUser(info);
+            //if wrong credentials were sent through 401 error
             return new ResponseEntity<>(userEmail, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
