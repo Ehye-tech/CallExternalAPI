@@ -28,8 +28,8 @@ public class UserController {
     @PostMapping("/user")
     public ResponseEntity<?> getValidateUserEmail(@RequestBody Info info) {
         if (service.isValidUser(info)) {
-            List<User> users = service.saveAllUser(info);
-            return new ResponseEntity<>(service.getEmail("Emma"), HttpStatus.OK);
+            String userEmail = service.callEmailFromValidUser(info);
+            return new ResponseEntity<>(userEmail, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
         }
